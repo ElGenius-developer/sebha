@@ -1,58 +1,36 @@
 import 'package:flutter/material.dart';
 
-class ZekrText extends StatefulWidget {
-  const ZekrText({Key? key}) : super(key: key);
-  @override
-  State<ZekrText> createState() => _ZekrTextState();
-}
-
-class _ZekrTextState extends State<ZekrText> {
-  TextEditingController controller =
-      TextEditingController(text: 'سُبْحَانَ اللّهِ');
-  int lenghtOfText = 15;
+class ZekrText extends StatelessWidget {
+  const ZekrText({Key? key, required this.text, required this.lenghtOfText})
+      : super(key: key);
+  final String text;
+  final int lenghtOfText;
   @override
   Widget build(BuildContext context) {
-    return Container(
-      width: lenghtOfText * 10 <= MediaQuery.of(context).size.width
-          ? lenghtOfText == 0
-              ? 25
-              : (lenghtOfText) * 7
-          : MediaQuery.of(context).size.width - 10,
-      alignment: Alignment.center,
-      decoration: BoxDecoration(
-          border: Border.all(
-            color: Colors.yellow.shade700,
-            width: 1,
-          ),
-          borderRadius: BorderRadius.circular(10)),
-      child: Theme(
-        data: Theme.of(context).copyWith(),
-        child: Center(
-          child: TextFormField(
-            maxLines: (lenghtOfText ~/ 20) <= 0 ? 1 : lenghtOfText ~/ 20,
-            decoration: InputDecoration(
-              enabledBorder: const UnderlineInputBorder(
-                borderSide: BorderSide(color: Colors.transparent),
-              ),
-              focusedBorder: UnderlineInputBorder(
-                borderSide: BorderSide(color: Colors.yellow.shade700),
-              ),
+    return Directionality(
+      textDirection: TextDirection.rtl,
+      child: Container(
+        height: ((lenghtOfText ~/ 10) <= 0 ? 50 : lenghtOfText * 6).toDouble(),
+        width: lenghtOfText * 15 <= MediaQuery.of(context).size.width
+            ? lenghtOfText == 0
+                ? 30
+                : (lenghtOfText) * 15
+            : MediaQuery.of(context).size.width - 10,
+        padding: const EdgeInsets.all(5),
+        alignment: Alignment.center,
+        decoration: BoxDecoration(
+            border: Border.all(
+              color: Colors.yellow.shade700,
+              width: 1,
             ),
-            controller: controller,
-            textAlign: TextAlign.center,
-            style: const TextStyle(
-                shadows: [Shadow(color: Colors.amber, blurRadius: 2)],
-                color: Colors.white,
-                fontWeight: FontWeight.bold,
-                fontSize: 20),
-            onSaved: (newValue) {
-              FocusNode().unfocus();
-            },
-            onChanged: (value) {
-              setState(() {
-                lenghtOfText = value.length;
-              });
-            },
+            borderRadius: BorderRadius.circular(10)),
+        child: Center(
+          child: Text(
+            text,
+            style: Theme.of(context).textTheme.bodyLarge!.copyWith(
+                color: Colors.amber,
+                shadows: [Shadow(color: Colors.yellow.shade100, blurRadius: 5)],
+                fontSize: 22),
           ),
         ),
       ),
