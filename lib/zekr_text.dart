@@ -10,11 +10,11 @@ class ZekrText extends StatelessWidget {
     return Directionality(
       textDirection: TextDirection.rtl,
       child: Container(
-        height: ((lenghtOfText ~/ 10) <= 0 ? 50 : lenghtOfText * 6).toDouble(),
-        width: lenghtOfText * 15 <= MediaQuery.of(context).size.width
+        height: ((lenghtOfText * 2 <= 50 ? 90 : lenghtOfText * 2).toDouble()),
+        width: lenghtOfText * 7 <= MediaQuery.of(context).size.width
             ? lenghtOfText == 0
-                ? 30
-                : (lenghtOfText) * 15
+                ? 50
+                : ((lenghtOfText) * 7 + 50).toDouble()
             : MediaQuery.of(context).size.width - 10,
         padding: const EdgeInsets.all(5),
         alignment: Alignment.center,
@@ -27,6 +27,7 @@ class ZekrText extends StatelessWidget {
         child: Center(
           child: Text(
             text,
+            textAlign: TextAlign.center,
             style: Theme.of(context).textTheme.bodyLarge!.copyWith(
                 color: Colors.amber,
                 shadows: [Shadow(color: Colors.yellow.shade100, blurRadius: 5)],

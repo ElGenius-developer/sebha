@@ -75,6 +75,8 @@ class _SebhaAppState extends State<SebhaApp> {
                 // *** edit
                 floatingButton(tooltip: 'تعديل الذكر', () async {
                   zikr = (await _showDialog(context)) ?? zikr;
+                  textLength = zikr.length;
+                  setState(() {});
                 }, Icons.edit),
 
                 _whiteSpace(height: 10),

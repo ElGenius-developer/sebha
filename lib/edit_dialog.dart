@@ -30,20 +30,23 @@ class _EditDialogState extends State<EditDialog> {
           ],
         ),
         content: SizedBox(
-          height: MediaQuery.of(context).size.height * .1,
+          height: MediaQuery.of(context).size.height * .1 + lenghtOfText * 1,
           width: MediaQuery.of(context).size.width,
           child: Material(
             color: Colors.transparent,
             child: SizedBox(
-              height: MediaQuery.of(context).size.height * .2,
+              height: MediaQuery.of(context).size.height * .1,
               width: MediaQuery.of(context).size.width,
               child: TextFormField(
                 //onEditingComplete: () => ,
                 //onTap: ,
 
-                maxLines: (lenghtOfText ~/ 20) <= 0 ? 1 : lenghtOfText ~/ 20,
+                maxLines: (controller.text.length ~/ 20) <= 0
+                    ? 1
+                    : lenghtOfText ~/ 20,
                 autocorrect: true,
                 cursorColor: Colors.amber,
+
                 decoration: InputDecoration(
                   hintText: 'اكتب الذكر',
                   enabledBorder: OutlineInputBorder(
